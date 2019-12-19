@@ -2,6 +2,8 @@ module Searchkick
   class Query
     extend Forwardable
 
+     @@metric_aggs = [:avg, :cardinality, :max, :min, :sum]
+    
     attr_reader :klass, :term, :options
     attr_accessor :body
 
@@ -649,6 +651,12 @@ module Searchkick
               interval: interval
             }
           }
+        elsif (metric = @@metric_aggs.find { |k| agg_options.has_key?(k) })
+          payload[:aggs][field] = {
+            metric => {
+              field: agg_options[metric][:field] || field
+            }
+         }.merge(shared_agg_options)  
         else
           payload[:aggs][field] = {
             terms: {
