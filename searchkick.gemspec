@@ -6,7 +6,7 @@ require "searchkick/version"
 Gem::Specification.new do |spec|
   spec.name          = "searchkick"
   spec.version       = Searchkick::VERSION
-  spec.authors       = ["Andrew Kane"]
+  spec.authors       = ["Andrew Kane","Manuel Fernandez"]
   spec.email         = ["andrew@chartkick.com"]
   spec.description   = "Intelligent search made easy"
   spec.summary       = "Searchkick learns what your users are looking for. As more people search, it gets smarter and the results get better. It’s friendly for developers - and magical for your users."
@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "activemodel"
-  spec.add_dependency "elasticsearch", ">= 1"
+  spec.add_dependency "elasticsearch", "< 6.3.0"
   spec.add_dependency "hashie"
 
   spec.add_development_dependency "bundler", "~> 1.6"
